@@ -56,8 +56,7 @@ Das Ziel dieses Projekts ist es, Webseitenbesuchern **relevante und präzise Inf
     ```bash
     py main.py
     ```
-
----
+    
 
 ### 6. **API-Endpunkte**  
 ```markdown
