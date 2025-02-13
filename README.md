@@ -76,11 +76,11 @@ Das Ziel dieses Projekts ist es, Webseitenbesuchern **relevante und präzise Inf
     }
     ```
 
-### GET /health
+### GET /test
 - **Beschreibung:** Überprüft den Status des Backends.
 - **Antwort:**
     ```json
     {
-      "status": "OK"
+      "message": "Success!"
     }
     ```
