@@ -84,3 +84,8 @@ Das Ziel dieses Projekts ist es, Webseitenbesuchern **relevante und präzise Inf
       "message": "Success!"
     }
     ```
+
+
+## Mitwirkende
+- [Birk Dinkelacker](https://github.com/Birk15)
+
