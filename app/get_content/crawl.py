@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse, urlunparse
 from .cleantext import clean_text
-from ..config import Config
 
 visited_links = set()  # Set für besuchte Links
 result = []  # Gespeicherte Inhalte

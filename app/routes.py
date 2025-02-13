@@ -50,10 +50,7 @@ def chat():
 @bp.route("/test", methods=["GET"])
 def test():
     try:
-        data = request.get_json()
-        user_message = data.get("text", "")
-        web_url = data.get("url", "")
-        return jsonify({"message": f"Question: {user_message}, URL: {web_url}"}), 200
+        return jsonify({"message": "Success!"}), 200
     except Exception as e:
         logging.error(f"Fehler bei ask_ollama: {e}")
         return jsonify({"error": "Invalid JSON format"}), 400
