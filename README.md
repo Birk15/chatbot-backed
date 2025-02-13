@@ -23,7 +23,6 @@ Das Ziel dieses Projekts ist es, Webseitenbesuchern **relevante und präzise Inf
 
 ## Voraussetzungen
 - Python 3.x
-- PostgreSQL Datenbank
 - OpenAI API Key (für die Nutzung von GPT-3 oder GPT-4)
 
 
@@ -53,14 +52,9 @@ Das Ziel dieses Projekts ist es, Webseitenbesuchern **relevante und präzise Inf
     OPENAI_API_KEY=dein_api_key
     ```
 
-5. Datenbank initialisieren:
+5. Anwendung starten (je nach Python-Version mit `py`, `python` oder `python3`):
     ```bash
-    flask db upgrade
-    ```
-
-6. Anwendung starten:
-    ```bash
-    flask run
+    py main.py
     ```
 
 ---
