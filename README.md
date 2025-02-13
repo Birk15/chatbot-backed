@@ -58,7 +58,6 @@ Das Ziel dieses Projekts ist es, Webseitenbesuchern **relevante und präzise Inf
     ```
     
 
-### 6. **API-Endpunkte**  
 ```markdown
 ## API-Endpunkte
 
