@@ -7,7 +7,7 @@ Entwickelt mit **Flask** und integriert mit **OpenAI**, bietet dieses System:
 - **Kontextbezogene Antworten** durch Vektorisierung und Ähnlichkeitssuche.
 - **Anpassbare Wissensbasis**, die automatisch aus den Inhalten der Webseite generiert wird.
 - **Einfache Integration** als REST-API für flexible Frontend-Anbindungen.
-- 
+
 Das Ziel dieses Projekts ist es, Webseitenbesuchern **relevante und präzise Informationen** zu bieten, indem nur vorhandene Daten verwendet werden.
 
 
@@ -21,3 +21,74 @@ Das Ziel dieses Projekts ist es, Webseitenbesuchern **relevante und präzise Inf
 - BeautifulSoup (HTML-Parsing für Web-Inhalte)  
 
 
+## Voraussetzungen
+- Python 3.x
+- PostgreSQL Datenbank
+- OpenAI API Key (für die Nutzung von GPT-3 oder GPT-4)
+
+
+## Installation und Setup
+
+1. Repository klonen:
+    ```bash
+    git clone <URL_DEINES_REPOS>
+    cd chatbot-backend
+    ```
+
+2. Virtuelle Umgebung erstellen und aktivieren:
+    ```bash
+    python -m venv venv
+    . venv/bin/activate  # Für Linux/Mac
+    venv\Scripts\activate  # Für Windows
+    ```
+
+3. Abhängigkeiten installieren:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Konfiguration anpassen:
+    Erstelle eine `.env`-Datei und füge deinen OpenAI API Key hinzu:
+    ```env
+    OPENAI_API_KEY=dein_api_key
+    ```
+
+5. Datenbank initialisieren:
+    ```bash
+    flask db upgrade
+    ```
+
+6. Anwendung starten:
+    ```bash
+    flask run
+    ```
+
+---
+
+### 6. **API-Endpunkte**  
+```markdown
+## API-Endpunkte
+
+### POST /chat
+- **Beschreibung:** Sendet eine Nutzeranfrage und erhält eine KI-generierte Antwort.
+- **Anfrage:** 
+    ```json
+    {
+      "text": "Wie ist das Wetter heute?"
+    }
+    ```
+- **Antwort:**
+    ```json
+    {
+      "reply": "Das Wetter heute ist sonnig mit 25°C."
+    }
+    ```
+
+### GET /health
+- **Beschreibung:** Überprüft den Status des Backends.
+- **Antwort:**
+    ```json
+    {
+      "status": "OK"
+    }
+    ```
