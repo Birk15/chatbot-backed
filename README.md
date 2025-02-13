@@ -20,3 +20,4 @@ Das Ziel dieses Projekts ist es, Webseitenbesuchern **relevante und präzise Inf
 - Requests (HTTP-Anfragen an APIs)  
 - BeautifulSoup (HTML-Parsing für Web-Inhalte)  
 
+
