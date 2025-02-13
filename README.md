@@ -58,7 +58,7 @@ Das Ziel dieses Projekts ist es, Webseitenbesuchern **relevante und präzise Inf
     ```
     
 
-```markdown
+
 ## API-Endpunkte
 
 ### POST /chat
