@@ -1,12 +1,10 @@
 from flask import Blueprint, request, jsonify
 from app.getcontext import get_context
-from app.ask_ai.askollama import ask_ollama
 from app.ask_ai.askopenai import ask_openai
 import logging
 
 bp = Blueprint("chatbot", __name__)
 
-ask_open_ai = True
 
 # Logging konfigurieren
 logging.basicConfig(level=logging.INFO)
@@ -32,7 +30,7 @@ def chat():
 
         # Frage OpenRouter mit Timeout-Handling
         try:
-            response = ask_openai(user_message, context) if ask_open_ai else ask_ollama(user_message, context)
+            response = ask_openai(user_message, context)
         except TimeoutError:
             logging.error("Timeout bei der Anfrage an ask_ollama")
             return jsonify({"error": "Request timeout"}), 504

@@ -47,10 +47,8 @@ def crawl(url):
     data = []
     for tag in soup.find_all(["h1", "h2", "h3", "p"]):
         if tag.name in ["h1", "h2", "h3"]:
-            gewichtung = {"h1": 2.0, "h2": 1.8, "h3": 1.6}.get(tag.name, 1.0)
             data.append({
                 "Überschrift": tag.get_text(strip=True),
-                "Gewichtung": gewichtung,
                 "Inhalt": ""  # Inhalt wird nachfolgend ergänzt
             })
         elif tag.name == "p" and data:
@@ -62,8 +60,7 @@ def crawl(url):
         if len(item["Inhalt"]) > 0:
             result.append({
                 "Thema": item['Überschrift'],
-                "Text": clean_text(item['Inhalt']),
-                "Gewichtung": item["Gewichtung"]
+                "Text": clean_text(item['Inhalt'])
             })
     
     # Alle Links auf der Seite finden und normalisieren

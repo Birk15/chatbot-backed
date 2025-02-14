@@ -3,6 +3,7 @@ import numpy as np  # Für effiziente numerische Berechnungen
 from .crawl import text_result  # Funktion, die eine Webseite scrapt
 import json # Chunks in einem JSON File speichern
 import os
+from app.get_content.better_chunks import send_text_to_openai_for_improvement
 
 def create_vektor_db(model, INDEX_FILE, CHUNKS_FILE, web_url):
 
@@ -24,27 +25,27 @@ def create_vektor_db(model, INDEX_FILE, CHUNKS_FILE, web_url):
         print("Fehler: Keine Daten gefunden.")
         return None, None
 
-    # Vektoren erstellen und Gewichtung anwenden
-    embeddings = []
+    # Chunks erstellen
     chunks = []
 
-    for item in scraped_data:
-        # Überschrift und Text getrennt vektorisieren
-        headline_vec = model.encode(item["Thema"])  # Nur die Überschrift
-        content_vec = model.encode(item["Text"])  # Nur der Inhalt
-        
-        # Gewichtung nur auf die Überschrift anwenden
-        headline_vec *= item["Gewichtung"]
-        
-        # Überschrift und Inhalt kombinieren
-        combined_vec = headline_vec + content_vec
-        embeddings.append(combined_vec)
-        
+    for item in scraped_data:        
         # Text speichern für die Chunks-Datei
         combined_text = f"{item['Thema']}: {item['Text']}"
         chunks.append(combined_text)
 
+    final_chunks = send_text_to_openai_for_improvement(chunks)
+    print(f"Final Chunks: {final_chunks}")
+
+
+    # Vektoren erstellen
+    embeddings = []
+
+    for item in final_chunks:
+        vec = model.encode(item)
+        embeddings.append(vec)
+    
     embeddings = np.array(embeddings)
+    print(f"Embeddings Shape: {embeddings.shape}")
 
     # FAISS Index erstellen
     dimension = embeddings.shape[1]
@@ -55,11 +56,9 @@ def create_vektor_db(model, INDEX_FILE, CHUNKS_FILE, web_url):
     # FAISS-Index speichern
     faiss.write_index(index, index_file)
 
-    print(f"Chunks: {chunks}")
-
     # Chunks speichern
     with open(chunks_file, "w", encoding="utf-8") as f:
-        json.dump(chunks, f, ensure_ascii=False, indent=4)
+        json.dump(final_chunks, f, ensure_ascii=False, indent=4)
 
-    return index, chunks
+    return index, final_chunks
 
